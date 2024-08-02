@@ -1,0 +1,15 @@
+.product-details {
+  position: absolute;
+  background: #0082e6f8;
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -100%;
+  border-radius: 5px;
+  width: 100%;
+  transition: .7s all;
+
+  &--show {
+    right: 0;
+  }
+}

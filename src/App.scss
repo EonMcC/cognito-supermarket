@@ -1,0 +1,17 @@
+.app {
+
+  &__content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    padding: 0 8px;
+
+    .nav {
+      width: 100%;
+    }
+    
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

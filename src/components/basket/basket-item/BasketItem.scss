@@ -1,0 +1,16 @@
+.basket-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -12px;
+  padding: 12px;
+
+  &:hover {
+    background-color: #72B3E5;
+  }
+
+  &__delete {
+    width: 16px;
+    cursor: pointer;
+  }
+}

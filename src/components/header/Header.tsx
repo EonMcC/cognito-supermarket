@@ -1,12 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Header.scss';
 import logo from '../../assets/logo.png';
 import { ReactComponent as Basket  } from '../../assets/basket.svg';
 import { BasketContext } from '../../context/BasketProvider';
+import { calculateTotal } from '../../helpers/app-helpers';
 
 const Header: React.FC<{onBasketClick: () => void}> = ({onBasketClick}) => {
 
   const { basket } = useContext(BasketContext);
+  const [total, setTotal] = useState('');
+
+  useEffect(() => {
+    setTotal(calculateTotal(basket))
+  }, [basket])
 
   return (
     <div className="header">
@@ -20,7 +26,7 @@ const Header: React.FC<{onBasketClick: () => void}> = ({onBasketClick}) => {
         className="header__basket-cont"
         onClick={onBasketClick}
       >
-        <p>{basket.length}</p>
+        {+total > 0 && <p>£{total}</p>}
         <Basket stroke="white" fill="transparent" />
       </div>
     </div>

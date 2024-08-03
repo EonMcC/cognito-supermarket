@@ -3,18 +3,15 @@ import './Basket.scss';
 import BasketItem from './basket-item/BasketItem';
 import { BasketContext } from '../../context/BasketProvider';
 import { Product } from '../../App';
+import { calculateTotal } from '../../helpers/app-helpers';
 
 const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
 
   const { basket } = useContext(BasketContext);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState('');
 
   useEffect(() => {
-    const total = basket.reduce((total, cur) => {
-      return total + cur.price
-    }, 0)
-    console.log('total', total)
-    setTotal(total.toFixed(2))
+    setTotal(calculateTotal(basket))
   }, [basket])
 
   function onCheckoutClick() {

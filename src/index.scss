@@ -49,4 +49,9 @@ code {
       background: green;
     }
   }
+
+  &:disabled {
+    background: grey;
+    border-color: grey;
+  }
 }

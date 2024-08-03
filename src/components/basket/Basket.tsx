@@ -47,6 +47,7 @@ const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
 
         <button
           className="primary-btn"
+          disabled={basket.length < 1}
           onClick={onCheckoutClick}
         >
           Checkout  

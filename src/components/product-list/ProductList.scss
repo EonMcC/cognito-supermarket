@@ -1,4 +1,8 @@
 .product-list {
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 720px) {
+    justify-content: center;
+  }
 }

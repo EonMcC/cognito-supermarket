@@ -31,7 +31,11 @@ const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
 
         {basket.map((product: Product, index: number) => {
           return (
-            <BasketItem key={String(product.id) + String(index)} product={product} index={index}/>
+            <BasketItem
+              key={String(product.id) + String(index)}
+              product={product}
+              index={index}
+            />
           )
         })}
 

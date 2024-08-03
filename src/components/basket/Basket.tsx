@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Basket.scss';
 import BasketItem from './basket-item/BasketItem';
-import { dummyData } from '../../dummy-data';
+import { BasketContext } from '../../context/BasketProvider';
+import { Product } from '../../App';
 
 const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
+
+  const { basket } = useContext(BasketContext);
 
   return (
     <>
@@ -14,8 +17,13 @@ const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
         <div
           className="basket__close"
           onClick={onClose}
-        >X</div>        
-        <BasketItem product={dummyData[0]} />
+        >X</div>
+
+        {basket.map((product: Product, index: number) => {
+          return (
+            <BasketItem key={String(product.id) + String(index)} product={product} index={index}/>
+          )
+        })}      
         
       </div>
     </>

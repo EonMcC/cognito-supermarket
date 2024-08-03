@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './BasketItem.scss';
 import { Product } from '../../../App';
 import { ReactComponent as Trash  } from '../../../assets/trash.svg';
+import { BasketContext } from '../../../context/BasketProvider';
 
-const BasketItem: React.FC<{product: Product}> = ({product}) => {
+const BasketItem: React.FC<{product: Product, index: number}> = ({product, index}) => {
+
+  const { basket, removeFromBasket } = useContext(BasketContext);
+  
 
   return (
     <div className="basket-item">
       <p>{product.name}</p>
       <div className="basket-item__count"></div>
-      <Trash className="basket-item__delete" />
+      <Trash
+        className="basket-item__delete"
+        onClick={() => removeFromBasket(index)}
+      />
     </div>
   )
 }

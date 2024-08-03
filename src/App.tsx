@@ -39,7 +39,7 @@ function App() {
         <nav className="nav">
           {products.map((product: Product) => {
             return (
-              <p>{product.name}</p>
+              <p key={product.id}>{product.name}</p>
             )
           })}
         </nav>

@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { MouseEvent, useContext, useEffect, useState } from 'react';
 import './ProductCard.scss';
 import avocado from '../../assets/avocado.png';
 import grapes from '../../assets/grapes.png';
 import pizza from '../../assets/pizza.png';
+import { ReactComponent as Checkmark } from '../../assets/checkmark.svg';
 import { Product } from '../../App';
 import ProductDetails from './product-details/ProductDetails';
+import { BasketContext } from '../../context/BasketProvider';
 
 const ProductCard: React.FC<{product: Product}> = ({product}) => {
 
+  const {basket, addToBasket} = useContext(BasketContext);
   const [image, setImage] = useState(avocado);
   const [showDescription, setShowDescription] = useState(false);
+  const [addSuccess, setAddSuccess] = useState(false)
 
   useEffect(() => {
     setRandomImage()
@@ -21,8 +25,12 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
     if (randomNumber === 3) setImage(pizza);
   }
 
-  function onAddToBasketClick() {
-    console.log(product.name)
+  function onAddToBasketClick(event: MouseEvent<HTMLButtonElement>) {
+    event?.stopPropagation();
+    setAddSuccess(true);
+    setTimeout(() => setAddSuccess(false), 1000);
+    addToBasket(product);
+    setShowDescription(false);
   }
 
   function onProductCardClick() {
@@ -44,10 +52,22 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
       <div className="flex-spacer"></div>
       <p className="product-card__price">£{product.price}</p>
       <button
-        className="product-card__button"
-        onClick={onAddToBasketClick}
+        className={
+          addSuccess
+            ? "product-card__button product-card__button--success"
+            : "product-card__button"
+          }
+        onClick={(event) => onAddToBasketClick(event)}
       >
-        Add to Basket
+        {addSuccess && (
+          <Checkmark
+            style={{
+              fill: "white",
+              width: "20px"
+            }}
+          />
+        )}
+        {addSuccess ? "Added to Basket" : "Add to Basket"}
       </button>
     </div>
   )

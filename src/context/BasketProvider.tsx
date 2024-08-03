@@ -1,5 +1,6 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { Product } from '../App';
+import { loadFromLocalStorage, saveToLocalStorage } from '../helpers/storage-helper';
 
 type BasketType = {
   basket: any[];
@@ -20,6 +21,16 @@ const BasketContext = createContext<BasketType>(basketState);
 const BasketProvider: React.FC<{children: any}> = ({children}) => {
   const [basket, setBasket] = useState<Product[]>([]);
 
+  useEffect(() => {
+    const localStorageData = loadFromLocalStorage();
+    console.log('load', localStorageData)
+    if (localStorageData) setBasket(localStorageData);
+  }, [])
+
+  useEffect(() => {
+    saveToLocalStorage(basket)
+  }, [basket])
+
   function addToBasket(product: Product) {
     setBasket((prevState) => [
       ...prevState,
@@ -32,7 +43,6 @@ const BasketProvider: React.FC<{children: any}> = ({children}) => {
     basketCopy.splice(index, 1);
     setBasket(basketCopy);
   }
-
 
   return (
     <BasketContext.Provider value={{ basket, setBasket, addToBasket, removeFromBasket }}>

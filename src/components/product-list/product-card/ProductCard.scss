@@ -1,5 +1,4 @@
 .product-card {
-  width: 200px;
   border: 1px solid black;
   padding: 12px;
   margin: 12px;
@@ -12,6 +11,13 @@
   align-items: center;
   position: relative;
   overflow: hidden;
+  flex-grow: 1;
+  width: 200px;
+
+  @media (max-width: 517px) {
+    width: 100%;
+    margin: 12px 0;
+  }
 
   &:hover {
     border-color: #399BE5;

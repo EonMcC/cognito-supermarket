@@ -4,9 +4,19 @@
   justify-content: space-between;
   margin: -12px;
   padding: 12px;
+  cursor: default;
 
   &:hover {
     background-color: #72B3E5;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &__price {
+    padding-left: 8px;
+    opacity: 0.7;
   }
 
   &__delete {

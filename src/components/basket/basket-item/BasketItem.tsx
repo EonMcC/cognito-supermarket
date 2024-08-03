@@ -11,8 +11,10 @@ const BasketItem: React.FC<{product: Product, index: number}> = ({product, index
 
   return (
     <div className="basket-item">
-      <p>{product.name}</p>
-      <div className="basket-item__count"></div>
+      <div>
+        <p>{product.name}</p>
+        <p className="basket-item__price">£{product.price}</p>
+      </div>
       <Trash
         className="basket-item__delete"
         onClick={() => removeFromBasket(index)}

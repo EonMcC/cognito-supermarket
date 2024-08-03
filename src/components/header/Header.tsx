@@ -15,12 +15,13 @@ const Header: React.FC<{onBasketClick: () => void}> = ({onBasketClick}) => {
         className="header__logo"
         alt="Logo"
       />
+      <h1>Cognito Supermarkets</h1>
       <div
         className="header__basket-cont"
         onClick={onBasketClick}
       >
         <p>{basket.length}</p>
-        <Basket />
+        <Basket stroke="white" fill="transparent" />
       </div>
     </div>
   )

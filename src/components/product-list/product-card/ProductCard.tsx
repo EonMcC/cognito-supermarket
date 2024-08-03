@@ -1,12 +1,12 @@
 import React, { MouseEvent, useContext, useEffect, useState } from 'react';
 import './ProductCard.scss';
-import avocado from '../../assets/avocado.png';
-import grapes from '../../assets/grapes.png';
-import pizza from '../../assets/pizza.png';
-import { ReactComponent as Checkmark } from '../../assets/checkmark.svg';
-import { Product } from '../../App';
+import avocado from '../../../assets/avocado.png';
+import grapes from '../../../assets/grapes.png';
+import pizza from '../../../assets/pizza.png';
+import { ReactComponent as Checkmark } from '../../../assets/checkmark.svg';
+import { Product } from '../../../App';
 import ProductDetails from './product-details/ProductDetails';
-import { BasketContext } from '../../context/BasketProvider';
+import { BasketContext } from '../../../context/BasketProvider';
 
 const ProductCard: React.FC<{product: Product}> = ({product}) => {
 
@@ -54,8 +54,8 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
       <button
         className={
           addSuccess
-            ? "product-card__button product-card__button--success"
-            : "product-card__button"
+            ? "primary-btn primary-btn--success"
+            : "primary-btn"
           }
         onClick={(event) => onAddToBasketClick(event)}
       >

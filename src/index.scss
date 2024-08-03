@@ -15,3 +15,38 @@ code {
 .flex-spacer {
   flex-grow: 1;
 }
+
+.primary-btn {
+  background: #0083E6;
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 12px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #0083E6;
+  transition: .7s all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 8px;
+  line-height: 20px;
+
+  &:hover {
+    background: #399BE5;
+  }
+
+  &:active {
+    background: #72B3E5;
+  }
+
+
+  &--success {
+    background: green;
+
+    &:hover,
+    &:active {
+      background: green;
+    }
+  }
+}

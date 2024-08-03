@@ -23,7 +23,6 @@ const BasketProvider: React.FC<{children: any}> = ({children}) => {
 
   useEffect(() => {
     const localStorageData = loadFromLocalStorage();
-    console.log('load', localStorageData)
     if (localStorageData) setBasket(localStorageData);
   }, [])
 
@@ -49,7 +48,6 @@ const BasketProvider: React.FC<{children: any}> = ({children}) => {
       {children}
     </BasketContext.Provider>
   )
-
 }
 
 export { BasketProvider, BasketContext };

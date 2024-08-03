@@ -1,17 +1,28 @@
 .app {
-
   &__content {
     display: grid;
     grid-template-columns: 200px 1fr;
     padding: 0 8px;
+    margin-top: 100px;
 
-    .nav {
-      width: 100%;
-    }
-    
-    .products-container {
-      display: flex;
-      flex-wrap: wrap;
+    aside {
+      padding-top: 12px;
+
+      > * {
+        padding: 12px;
+        border: 1px solid black;
+        border-radius: 5px;
+        text-align: center;
+
+        p {
+          margin: 0;
+          
+          span {
+            // font-weight: 800;
+            font-size: 20px;
+          }
+        }
+      }
     }
   }
 }

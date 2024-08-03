@@ -1,10 +1,7 @@
-import { Product } from "../App";
+import { Product } from "../components/product-list/ProductList"
 
 export function calculateTotal(basket: Product[]) {
-  const total = basket.reduce((total, cur) => {
+  return basket.reduce((total, cur) => {
     return total + cur.price
   }, 0).toFixed(2)
-
-  console.log('total', total)
-  return total;
 }

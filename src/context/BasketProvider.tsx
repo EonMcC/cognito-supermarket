@@ -1,16 +1,19 @@
-import React, { createContext, useEffect, useState } from 'react';
-import { Product } from '../App';
+import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import { Product } from '../components/product-list/ProductList';
 import { loadFromLocalStorage, saveToLocalStorage } from '../helpers/storage-helper';
 
+// I opted to use useContext for state management as there is only a little amount of state to track.
+// I usually use REDUX for state management, but it felt like overkill for this site.
+
 type BasketType = {
-  basket: any[];
-  setBasket: React.Dispatch<React.SetStateAction<any[]>>;
-  addToBasket: any;
-  removeFromBasket: any
+  basket: Product[];
+  setBasket: React.Dispatch<React.SetStateAction<Product[]>>;
+  addToBasket: (product: Product) => void;
+  removeFromBasket: (index: number) => void;
 }
 
 const basketState = {
-  basket: ['one'],
+  basket: [],
   setBasket: () => [],
   addToBasket: () => [],
   removeFromBasket: () => []
@@ -18,7 +21,7 @@ const basketState = {
 
 const BasketContext = createContext<BasketType>(basketState);
 
-const BasketProvider: React.FC<{children: any}> = ({children}) => {
+const BasketProvider: React.FC<{children: ReactNode}> = ({children}) => {
   const [basket, setBasket] = useState<Product[]>([]);
 
   useEffect(() => {

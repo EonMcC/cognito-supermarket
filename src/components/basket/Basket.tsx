@@ -2,16 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 import './Basket.scss';
 import BasketItem from './basket-item/BasketItem';
 import { BasketContext } from '../../context/BasketProvider';
-import { Product } from '../../App';
 import { calculateTotal } from '../../helpers/app-helpers';
+import { Product } from '../product-list/ProductList';
 
 const Basket: React.FC<{onClose: () => void}> = ({onClose}) => {
 
+  // I opted to use useContext for state management as there is only a little amount of state to track.
+  // I usually use REDUX for state management, but it felt like overkill for this site.
   const { basket } = useContext(BasketContext);
   const [total, setTotal] = useState('');
 
   useEffect(() => {
-    setTotal(calculateTotal(basket))
+    setTotal(calculateTotal(basket));
   }, [basket])
 
   function onCheckoutClick() {

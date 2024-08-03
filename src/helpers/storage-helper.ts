@@ -1,6 +1,9 @@
-import { Product } from "../App";
+import { Product } from "../components/product-list/ProductList";
 
 const KEY = 'cognito-shopping-local-storage';
+
+// These two functions are used to store the basket state in local storage so that the basket persists
+// if the page is refreshed.
 
 export const saveToLocalStorage = (basket: Product[]) => {
   try {

@@ -4,22 +4,26 @@ import avocado from '../../../assets/avocado.png';
 import grapes from '../../../assets/grapes.png';
 import pizza from '../../../assets/pizza.png';
 import { ReactComponent as Checkmark } from '../../../assets/checkmark.svg';
-import { Product } from '../../../App';
 import ProductDetails from './product-details/ProductDetails';
 import { BasketContext } from '../../../context/BasketProvider';
+import { Product } from '../ProductList';
 
 const ProductCard: React.FC<{product: Product}> = ({product}) => {
 
-  const {basket, addToBasket} = useContext(BasketContext);
+  // ProductCard is it's own component as it is reused many times, helping to keep the code DRY.
+
+  const {addToBasket} = useContext(BasketContext);
   const [image, setImage] = useState(avocado);
   const [showDescription, setShowDescription] = useState(false);
-  const [addSuccess, setAddSuccess] = useState(false)
+  const [addSuccess, setAddSuccess] = useState(false);
 
   useEffect(() => {
-    setRandomImage()
+    setRandomImage();
   }, [])
 
   function setRandomImage() {
+    // A small function to select an image from a group of 3.
+    // Implemented to add placeholder images to the site.
     const randomNumber = Math.floor(Math.random() * 3) + 1;
     if (randomNumber === 2) setImage(grapes);
     if (randomNumber === 3) setImage(pizza);
@@ -34,7 +38,7 @@ const ProductCard: React.FC<{product: Product}> = ({product}) => {
   }
 
   function onProductCardClick() {
-    setShowDescription((prevState) => !prevState)
+    setShowDescription((prevState) => !prevState);
   }
 
   return (

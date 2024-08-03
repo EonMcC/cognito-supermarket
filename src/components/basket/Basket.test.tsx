@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react';
-import { getByText, render, screen, cleanup, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Basket from './Basket';
-import BasketItem from './basket-item/BasketItem';
 import { BasketContext, BasketProvider } from '../../context/BasketProvider';
-import { Product } from '../../App';
+import { Product } from '../product-list/ProductList';
+
 
 const SetContext: React.FC<{context: Product[]}> = ({context}) => {
   const { setBasket } = useContext(BasketContext); 
@@ -39,10 +39,6 @@ const products = [
 const onClose = jest.fn()
 
 describe('Basket tests', () => {
-
-  afterEach(() => {
-    cleanup();
-  })
 
   test('renders a primary checkout button', () => {
     render(
